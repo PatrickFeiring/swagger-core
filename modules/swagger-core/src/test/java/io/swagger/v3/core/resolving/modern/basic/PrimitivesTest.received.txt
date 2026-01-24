@@ -1,0 +1,63 @@
+package io.swagger.v3.core.resolving.modern.basic;
+
+import io.swagger.v3.core.resolving.modern.ModernResolverTest;
+import org.testng.annotations.Test;
+
+import java.net.URL;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
+
+public class PrimitivesTest extends ModernResolverTest {
+
+    public record Strings(
+            String a,
+            byte b,
+            byte[] c,
+            URL d
+    ) {
+    }
+
+    @Test
+    public void testStrings() {
+        // language=yaml
+        var expected = """
+            type: object
+            properties:
+              first:
+                type: string
+              second:
+                type: number
+            """;
+        verifyInline(resolve(Strings.class), expected);
+    }
+
+    public record Optionals(
+        OptionalInt a,
+        OptionalLong b,
+        OptionalDouble c,
+        Optional<String> d
+    ) {
+    }
+
+    @Test
+    public void testOptionals() {
+        // language=yaml
+        var expected = """
+            type: object
+            properties:
+              a:
+                type: integer
+                format: int32
+              b:
+                type: integer
+                format: int64
+              c:
+                type: number
+              d:
+                type: string
+            """;
+        verifyInline(resolve(Optionals.class), expected);
+    }
+}

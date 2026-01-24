@@ -1,5 +1,37 @@
 # Swagger Core <img src="https://raw.githubusercontent.com/swagger-api/swagger.io/wordpress/images/assets/SW-logo-clr.png" height="50" align="right">
 
+A form of the resolve from swagger-core which is Jackson 3 and OpenAPI 3.1 first, with .
+
+It closes many long standing issues in the original swagger-core repository by 
+
+A fork of swagger-core focusing on modern Java support.g
+
+It is Jackson 3 and OpenAPI 3.1 first.
+
+
+It focuses on a unified testing strategy
+as well as serializing .
+
+The internal representation.
+
+Instead of basing it on a schema model, and then using different mixins to render those
+instead use an internal representation, IR, and convert that to whatever format we later need to use.
+
+[ ] JsonValue
+[ ] JsonIgnore
+[ ] JsonFormat
+
+Bean validation
+Composed annotations
+Annotatins occuring multiple times
+Turn on nested scanning of attributes to make composable schemas
+
+Moreover, because of the new architecture of the resolve additional
+
+
+https://github.com/swagger-api/swagger-core/issues/4506
+
+
 **NOTE:** If you're looking for Swagger Core 1.5.X and OpenAPI 2.0, please refer to [1.5 branch](https://github.com/swagger-api/swagger-core/tree/1.5).
 
 **NOTE:** Since version 2.1.7, Swagger Core also supports the Jakarta namespace. There are a parallel set of artifacts with the `-jakarta` suffix, providing the same functionality as the unsuffixed (i.e.: `javax`) artifacts.

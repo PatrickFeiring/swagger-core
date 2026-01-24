@@ -23,7 +23,7 @@ import static org.testng.Assert.assertNotNull;
 public class ContainerTest extends SwaggerTestBase {
 
     static class ArrayBean {
-        public String[] a;
+        public int[] a;
     }
 
     @Test

@@ -1,0 +1,40 @@
+package io.swagger.v3.core.resolving.modern.jackson.enums;
+
+import com.fasterxml.jackson.databind.EnumNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.EnumNaming;
+import io.swagger.v3.core.resolving.modern.ModernResolverTest;
+import org.testng.annotations.Test;
+
+public class EnumNamingStrategyTest extends ModernResolverTest {
+
+    @EnumNaming(EnumNamingStrategies.LowerCamelCaseStrategy.class)
+    enum Status {
+        PENDING,
+        SUCCESS,
+        ERROR
+    }
+
+    @Test
+    public void testSchema() {
+        // language=yaml
+        var expected = """
+            type: string
+            enum:
+            - pending
+            - success
+            - error
+            """;
+        verifyInline(resolve(Status.class), expected);
+    }
+
+    @Test
+    public void testSerialization() {
+        var value = Status.PENDING;
+        // language=json
+        var expected = """
+            "pending"
+            """;
+        verifyInline(writeValueAsString(value), expected);
+        assertSchemaValidatesValue(Status.class, value);
+    }
+}
